@@ -5,7 +5,7 @@ class EmployeeController {
     // Read
     static show(req, res) {
         Employee.findAll()
-            .then(employees => res.render("employees", employees))
+            .then(employees => res.render("employees", { employees }))
             .catch(err => res.send(err))
     }
 

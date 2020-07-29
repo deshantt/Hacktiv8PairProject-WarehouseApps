@@ -12,7 +12,7 @@
     <%- include("./partials/navbar") %>
     <h2>Employee List</h2>
 
-    <a class="btn btn-primary" href="/Employee/add" role="button">Add Employee</a>
+    <a class="btn btn-primary" href="/employees/add" role="button">Add Employee</a>
     <br>
     <br>
     <table class="table">
@@ -36,8 +36,8 @@
                 <td><%= employee.salary %></td>
                 <td><%= employee.gender %></td>
                 <td><%= employee.WarehouseId %></td>
-                <td><a class="btn btn-primary" href="/warehouses/<%= warehouse.id %>/edit" role="button">Edit</a> <a
-                        class="btn btn-danger" href="/warehouses/<%= warehouse.id %>/delete"
+                <td><a class="btn btn-primary" href="/employees/<%= employee.id %>/edit" role="button">Edit</a> <a
+                        class="btn btn-danger" href="/employees/<%= employee.id %>/delete"
                         onclick="return confirm('Are you sure you want to delete the item?')" role="button">Delete</a>
                 </td>
             </tr>

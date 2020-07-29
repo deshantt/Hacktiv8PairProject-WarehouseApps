@@ -1,11 +1,15 @@
 const { Product, Warehouse } = require("../models")
+const warehouse = require("../models/warehouse")
 
 class WarehouseController {
 
     // Read
     static show(req, res) {
         Warehouse.findAll()
-            .then(warehouses => res.render("warehouses", warehouses))
+            .then(warehouses => {
+                console.log(warehouses)
+                res.render("warehouses", { warehouses })
+            })
             .catch(err => res.send(err))
     }
 

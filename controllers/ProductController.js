@@ -5,7 +5,7 @@ class ProductController {
     // Read
     static show(req, res) {
         Product.findAll()
-            .then(products => res.render("products", products))
+            .then(products => res.render("products", { products }))
             .catch(err => res.send(err))
     }
 

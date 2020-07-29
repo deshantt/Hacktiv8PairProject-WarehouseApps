@@ -4,26 +4,20 @@
         "lastName": "Jojon",
         "position": "boss",
         "gender": "male",
-        "salary": 10000000,
-        "username": "jojonkyut",
-        "password": "4laYkaN6u3"
+        "salary": 10000000
     },
     {
         "firstName": "Dina",
         "lastName": "Dimana",
         "position": "staff",
         "gender": "female",
-        "salary": 5000000,
-        "username": "dinana",
-        "password": "manamana"
+        "salary": 5000000
     },
     {
         "firstName": "Edi",
         "lastName": "Marsudi",
         "position": "administrator",
         "gender": "male",
-        "salary": 7000000,
-        "username": "ediiii",
-        "password": "dududu"
+        "salary": 7000000
     }
 ]

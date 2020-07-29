@@ -2,6 +2,7 @@
 const {
   Model
 } = require('sequelize');
+const EmployeeController = require('../controllers/EmployeeController');
 module.exports = (sequelize, DataTypes) => {
   class Employee extends Model {
     /**
@@ -11,13 +12,13 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Employee.belongsTo(models.Warehouse, { foreignKey: "WarehouseId" })
+      Employee.hasOne(models.EmployeeCredential, { foreignKey: "EmployeeId" })
     }
   };
   Employee.init({
     firstName: DataTypes.STRING,
     lastName: DataTypes.STRING,
-    username: DataTypes.STRING,
-    password: DataTypes.STRING,
     position: DataTypes.STRING,
     salary: DataTypes.INTEGER,
     gender: DataTypes.STRING,
