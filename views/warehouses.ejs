@@ -27,7 +27,7 @@
         <tbody>
             <% warehouses.forEach(warehouse => { %>
             <tr>
-                <td><%= warehouse.name_city %></td>
+                <td><%= warehouse.city %></td>
                 <td><%= warehouse.address %></td>
                 <td><%= warehouse.leaseExpiryDate %></td>
                 <td><a class="btn btn-primary" href="/warehouses/<%= warehouse.id %>/edit" role="button">Edit</a> <a

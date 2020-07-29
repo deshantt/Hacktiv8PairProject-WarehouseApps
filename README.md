@@ -4,8 +4,8 @@ Entity Breakdown:
 - Warehouse: City, Address, LeaseExpiryDate
 - Product: Name, Category, ExpiryDate, Price
 - Stock: WarehouseID, ProductID
-- Employee: First Name,Last Name, Position, Gender, Salary, WarehouseID
-- EmployeeCredential: EmployeeId, username, password
+- Employee: First Name,Last Name, Position, Gender, Salary, username, password, WarehouseID
+
 
 MVP:
 - Warning for Product ExpiryDate (60 days before)

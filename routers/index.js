@@ -7,7 +7,7 @@ const warehouseRouter = require("./warehouse")
 
 const Controller = require("../controllers/Controller")
 
-router.get("/login", Controller.home)
+router.get("/login", Controller.login)
 
 router.use("/employees", employeeRouter)
 router.use("/products", productRouter)

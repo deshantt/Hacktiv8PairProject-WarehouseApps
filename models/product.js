@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
   Product.init({
     name: DataTypes.STRING,
     category: DataTypes.STRING,
-    expiryDate: DataTypes.INTEGER,
+    expiryDate: DataTypes.DATEONLY,
     price: DataTypes.INTEGER
   }, {
     sequelize,

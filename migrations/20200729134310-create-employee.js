@@ -14,11 +14,20 @@ module.exports = {
       lastName: {
         type: Sequelize.STRING
       },
+      username: {
+        type: Sequelize.STRING
+      },
+      password: {
+        type: Sequelize.STRING
+      },
       position: {
         type: Sequelize.STRING
       },
       salary: {
         type: Sequelize.INTEGER
+      },
+      gender: {
+        type: Sequelize.STRING
       },
       WarehouseId: {
         type: Sequelize.INTEGER

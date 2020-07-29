@@ -15,7 +15,7 @@ module.exports = {
         type: Sequelize.STRING
       },
       expiryDate: {
-        type: Sequelize.INTEGER
+        type: Sequelize.DATEONLY
       },
       price: {
         type: Sequelize.INTEGER

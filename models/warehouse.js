@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
   Warehouse.init({
     city: DataTypes.STRING,
     address: DataTypes.STRING,
-    leaseExpiryDate: DataTypes.INTEGER
+    leaseExpiryDate: DataTypes.DATEONLY
   }, {
     sequelize,
     modelName: 'Warehouse',
