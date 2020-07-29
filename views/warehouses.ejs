@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%- include("./partials/bootstrap") %>
+    <title>Warehouse List</title>
+</head>
+
+<body>
+    <%- include("./partials/navbar") %>
+    <h2>Warehouse List</h2>
+
+    <a class="btn btn-primary" href="/warehouses/add" role="button">Add Warehouse</a>
+    <br>
+    <br>
+    <table class="table">
+        <thead class="thead-light">
+            <tr>
+                <th scope="col">City</th>
+                <th scope="col">Address</th>
+                <th scope="col">Lease Expiry Date</th>
+                <th scope="col">Options</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% warehouses.forEach(warehouse => { %>
+            <tr>
+                <td><%= warehouse.name_city %></td>
+                <td><%= warehouse.address %></td>
+                <td><%= warehouse.leaseExpiryDate %></td>
+                <td><a class="btn btn-primary" href="/warehouses/<%= warehouse.id %>/edit" role="button">Edit</a> <a
+                        class="btn btn-danger" href="/warehouses/<%= warehouse.id %>/delete"
+                        onclick="return confirm('Are you sure you want to delete the item?')" role="button">Delete</a>
+                </td>
+            </tr>
+            <% }) %>
+        </tbody>
+    </table>
+    <%- include("./partials/footer") %>
+</body>
+
+</html>

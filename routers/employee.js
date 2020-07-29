@@ -4,17 +4,17 @@ const router = express.Router()
 const EmployeeController = require("../controllers/EmployeeController")
 
 // Read
-router.get("/", EmployeeControlller.show)
+router.get("/", EmployeeController.show)
 
 // Create
-router.get("/add", EmployeeControlller.addGet)
-router.post("/add", EmployeeControlller.addPost)
+router.get("/add", EmployeeController.addGet)
+router.post("/add", EmployeeController.addPost)
 
 // Update
-router.get("/:id/edit", EmployeeControlller.editGet)
-router.post("/:id/edit", EmployeeControlller.editPost)
+router.get("/:id/edit", EmployeeController.editGet)
+router.post("/:id/edit", EmployeeController.editPost)
 
 // Delete
-router.get("/:id/delete", EmployeeControlller.delete)
+router.get("/:id/delete", EmployeeController.delete)
 
 module.exports = router
