@@ -10,7 +10,9 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      // buat jaga2 CRUD di controller
+      // Stock.belongsTo(models.Warehouse, {foreignKey: "WarehouseId", targetKey: "id"});
+      // Stock.belongsTo(models.Product, {foreignKey: "EmployeeId", targetKey: "id"});
     }
   };
   Stock.init({

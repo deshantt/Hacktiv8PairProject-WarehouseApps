@@ -5,16 +5,16 @@ class ProductController {
     // Read
     static show(req, res) {
         Product.findAll()
-            .then(products => res.render("products", { products }))
+            .then(products => res.render("products", { products, nav: 'product' }))
             .catch(err => res.send(err))
     }
 
     static addGet(req, res) {
         if (req.query.error) {
-            res.render("addProduct", { err: req.query.error })
+            res.render("addProduct", { err: req.query.error, nav: 'product'  })
         }
         else {
-            res.render("addProduct", { err: null })
+            res.render("addProduct", { err: null , nav: 'product' })
         }
     }
 
@@ -32,10 +32,10 @@ class ProductController {
         Product.findByPk(id)
             .then((product) => {
                 if (!req.query.error) {
-                    res.render("editProduct", { product, err: null })
+                    res.render("editProduct", { product, err: null , nav: 'product' })
                 }
                 else {
-                    res.render("editProduct", { product, err: req.query.error })
+                    res.render("editProduct", { product, err: req.query.error , nav: 'product' })
                 }
             })
             .catch(err => res.send(err))

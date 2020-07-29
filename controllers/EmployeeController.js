@@ -5,16 +5,16 @@ class EmployeeController {
     // Read
     static show(req, res) {
         Employee.findAll()
-            .then(employees => res.render("employees", { employees }))
+            .then(employees => res.render("employees", { employees, nav: 'employee' }))
             .catch(err => res.send(err))
     }
 
     static addGet(req, res) {
         if (req.query.error) {
-            res.render("addEmployee", { err: req.query.error })
+            res.render("addEmployee", { err: req.query.error, nav: 'employee' })
         }
         else {
-            res.render("addEmployee", { err: null })
+            res.render("addEmployee", { err: null, nav: 'employee' })
         }
     }
 
@@ -32,10 +32,10 @@ class EmployeeController {
         Employee.findByPk(id)
             .then((employee) => {
                 if (!req.query.error) {
-                    res.render("editEmployee", { employee, err: null })
+                    res.render("editEmployee", { employee, err: null, nav: 'employee' })
                 }
                 else {
-                    res.render("editEmployee", { employee, err: req.query.error })
+                    res.render("editEmployee", { employee, err: req.query.error, nav: 'employee' })
                 }
             })
             .catch(err => res.send(err))

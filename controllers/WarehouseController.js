@@ -8,17 +8,17 @@ class WarehouseController {
         Warehouse.findAll()
             .then(warehouses => {
                 console.log(warehouses)
-                res.render("warehouses", { warehouses })
+                res.render("warehouses", { warehouses , nav: 'warehouse' })
             })
             .catch(err => res.send(err))
     }
 
     static addGet(req, res) {
         if (req.query.error) {
-            res.render("addWarehouse", { err: req.query.error })
+            res.render("addWarehouse", { err: req.query.error , nav: 'warehouse'})
         }
         else {
-            res.render("addWarehouse", { err: null })
+            res.render("addWarehouse", { err: null , nav: 'warehouse'})
         }
     }
 
@@ -36,10 +36,10 @@ class WarehouseController {
         Warehouse.findByPk(id)
             .then((warehouse) => {
                 if (!req.query.error) {
-                    res.render("editWarehouse", { warehouse, err: null })
+                    res.render("editWarehouse", { warehouse, err: null , nav: 'warehouse'})
                 }
                 else {
-                    res.render("editWarehouse", { warehouse, err: req.query.error })
+                    res.render("editWarehouse", { warehouse, err: req.query.error, nav: 'warehouse' })
                 }
             })
             .catch(err => res.send(err))

@@ -6,9 +6,34 @@
     </button>
     <div id="navbarNavAltMarkup">
         <div class="navbar-nav">
-            <a class="nav-item nav-link" href="/employees">Employees</a>
-            <a class="nav-item nav-link" href="/warehouses">Warehouses</a>
-            <a class="nav-item nav-link" href="/products">Product</a>
+            <% if(nav === 'home'){  %>
+		        <a type="button" class="btn btn-outline-success" href='#' role="button">Home</a>
+            <%}else{ %>
+                <a class="nav-item nav-link " href="#">Home</a>
+            <%} %>
+            
+            <% if(nav === 'employee'){  %>
+		        <a type="button" class="btn btn-outline-success" href='/employees' role="button">Employees</a>
+            <%}else{ %>
+                <a class="nav-item nav-link " href="/employees">Employees</a>
+            <%} %>
+            
+            <% if(nav === 'warehouse'){  %>
+		        <a type="button" class="btn btn-outline-success" href='/warehouses' role="button">Warehouses</a>
+            <%}else{ %>
+                <a class="nav-item nav-link " href="/warehouses">Warehouses</a>
+            <%} %>
+            
+            <% if(nav === 'product'){  %>
+		        <a type="button" class="btn btn-outline-success" href='/products' role="button">Product</a>
+            <%}else{ %>
+                <a class="nav-item nav-link " href="/products">Product</a>
+            <%} %>
         </div>
     </div>
+
+    <div class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
+		<a type="button" class="btn btn-info" href='/login' role="button">Login</a>
+    </div>
 </nav>
+

@@ -10,8 +10,8 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
       EmployeeCredential.belongsTo(models.Employee, { foreignKey: "EmployeeId" })
+      // SANT : SEPERTINYA KRG 1 KOLOM LG MAS DI DBASE, YG NYIMPEN DATA EMPLOYEE ID NYA, SI FK NYA
     }
   };
   EmployeeCredential.init({
