@@ -32,10 +32,10 @@
             <tbody class="table table-bordered">
                 <% if(result.length !== 0){for (let i = 0; i < result.length; i++) { %>
                     <tr>
-                        <td><%= result[i].position %></td>
+                        <td><%= result[i].getPosition() %></td>
                         <td><%= result[i].getSalaryFormat() %></td>
                         <td><%= result[i].getFullname() %></td>
-                        <td><%= result[i].gender %></td>
+                        <td><%= result[i].getGender() %></td>
                     </tr>
                 <% }} else{%>
                     <td colspan="4"><h1 class="text-center">Tidak ada Pegawai terdaftar di gudang ini</h1></td>

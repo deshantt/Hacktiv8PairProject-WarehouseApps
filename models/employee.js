@@ -4,6 +4,7 @@ const {
 } = require('sequelize');
 const EmployeeController = require('../controllers/EmployeeController');
 const calc = require('../helpers/moneyFormat')
+const firstToCaps = require('../helpers/changetoCapitalize')
 
 module.exports = (sequelize, DataTypes) => {
   class Employee extends Model {
@@ -26,8 +27,16 @@ module.exports = (sequelize, DataTypes) => {
       } else if (gender === 'male'){
         output += 'Mr. '
       }
-      output += `${this.firstName} ${this.lastName}`
+      output += `${firstToCaps(this.firstName)} ${firstToCaps(this.lastName)}`
       return output
+    }
+
+    getGender(){
+      return firstToCaps(this.gender)
+    }
+
+    getPosition(){
+      return firstToCaps(this.position)
     }
 
     getSalaryFormat(){

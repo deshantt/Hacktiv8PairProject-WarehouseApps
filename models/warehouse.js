@@ -13,12 +13,21 @@ module.exports = (sequelize, DataTypes) => {
       Warehouse.belongsToMany(models.Product, { through: models.Stock, foreignKey: "WarehouseId" })
       Warehouse.hasMany(models.Employee, { foreignKey: "WarehouseId" })
     }
+
+    getWarehouseName(){
+      return `${this.city} - ${this.address}`
+    }
   };
   Warehouse.init({
     city: DataTypes.STRING,
     address: DataTypes.STRING,
     leaseExpiryDate: DataTypes.DATEONLY
   }, {
+    hooks: {
+      beforeCreate(instance, options){
+        instance.city = `Warehouse ${instance.city}`
+      }
+    },
     sequelize,
     modelName: 'Warehouse',
   });

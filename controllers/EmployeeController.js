@@ -4,7 +4,7 @@ class EmployeeController {
 
     // Read
     static show(req, res) {
-        Employee.findAll()
+        Employee.findAll({include:[{model: Warehouse}]})
             .then(employees => res.render("employees", { employees, nav: 'employee' }))
             .catch(err => res.send(err))
     }
@@ -12,11 +12,10 @@ class EmployeeController {
     static showEmployeeData(req, res){
         Employee.findAll({include:[{model: Warehouse}]}).then(data =>{
             console.log(data)
+            res.render('employeeData')
         }).then(err =>{
             console.log(err)
         })
-
-        res.render('employeeData')
     }
 
     static addGet(req, res) {
