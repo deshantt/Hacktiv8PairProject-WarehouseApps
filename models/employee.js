@@ -3,6 +3,8 @@ const {
   Model
 } = require('sequelize');
 const EmployeeController = require('../controllers/EmployeeController');
+const calc = require('../helpers/moneyFormat')
+
 module.exports = (sequelize, DataTypes) => {
   class Employee extends Model {
     /**
@@ -17,11 +19,19 @@ module.exports = (sequelize, DataTypes) => {
 
     // INSTANCE FULL NAME OF EMPLOYEE
     getFullname(){
-      if (this.gender.toLowerCase() === 'female'){
-        return `Mrs. ${this.firstName} ${this.lastName}`
-      } else if (this.gender.toLowerCase() === 'male'){
-        return `Mr. ${this.firstName} ${this.lastName}`
+      let gender = this.gender.toLowerCase()
+      let output = ''
+      if ( gender === 'female'){
+        output += 'Mrs. '
+      } else if (gender === 'male'){
+        output += 'Mr. '
       }
+      output += `${this.firstName} ${this.lastName}`
+      return output
+    }
+
+    getSalaryFormat(){
+      return calc(this.salary)
     }
   };
   Employee.init({
