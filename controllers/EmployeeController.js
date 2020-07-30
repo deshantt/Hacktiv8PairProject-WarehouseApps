@@ -20,14 +20,13 @@ class EmployeeController {
 
     static addGet(req, res) {
         Warehouse.findAll().then(data =>{
-            console.log(data)
             if (req.query.error) {
                 res.render("addEmployee", { err: req.query.error, nav: 'employee', result:data })
             }
             else {
                 res.render("addEmployee", { err: null, nav: 'employee', result:data })
             }    
-        }).then(err =>{
+        }).catch(err =>{
             console.log(err)
         })
     }
@@ -43,16 +42,43 @@ class EmployeeController {
 
     static editGet(req, res) {
         let id = +req.params.id
-        Employee.findByPk(id)
-            .then((employee) => {
-                if (!req.query.error) {
-                    res.render("editEmployee", { employee, err: null, nav: 'employee' })
-                }
-                else {
-                    res.render("editEmployee", { employee, err: req.query.error, nav: 'employee' })
+
+        Warehouse.findAll().then(data =>{
+            return new Promise((resolve, reject) => {
+                if(data){
+                    Employee.findOne({include: [{model: Warehouse}], where: {id} })
+                    .then((employee) => {
+                        resolve({data, employee})
+                })
+                .catch(err => res.send(err))
+
+                } else{
+                    reject('Data tidak ditemukan')
                 }
             })
-            .catch(err => res.send(err))
+        }).then(data =>{
+            // if (!req.query.error) {
+                res.render("editEmployee", { employee : data.employee.dataValues, err: null, nav: 'employee', result: data.data})
+            // }
+            // else {
+                // res.render("editEmployee", { employee = data.employee, err: req.query.error, nav: 'employee', result = data.Warehouse })
+            // }
+            
+            console.log(data.data)
+        }).catch(err =>{
+            console.log(err)
+        })
+
+        // Employee.findOne({include: [{model: Warehouse}], where: {id} })
+        //     .then((employee) => {
+        //         if (!req.query.error) {
+        //             res.render("editEmployee", { employee, err: null, nav: 'employee' })
+        //         }
+        //         else {
+        //             res.render("editEmployee", { employee, err: req.query.error, nav: 'employee' })
+        //         }
+        //     })
+        //     .catch(err => res.send(err))
     }
 
     static editPost(req, res) {

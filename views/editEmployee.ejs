@@ -10,41 +10,58 @@
 
 <body>
     <%- include("./partials/navbar") %>
-    <h2>Edit Employee</h2>
+    <br><h2>Edit Employee</h2><br>
 
     <form action="/employees/<%= employee.id %>/edit" method="post">
-        <div class="form-group row">
-            <label for="firstName" class="col-sm-2 col-form-label">First Name</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" name="firstName" value="<%= employee.firstName %>" required>
+        <div>
+            <div class="col-md-3 mb-3">
+                <label for="firstName" class="validationServer01">First Name</label>
+                <input type="text" class="form-control" name="firstName" placeholder="e.g: Dika" value="<%= employee.firstName %>" required>
             </div>
         </div>
-        <div class=" form-group row">
-            <label for="lastName" class="col-sm-2 col-form-label">Last Name</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" name="lastName" value="<%= employee.lastName %>" required>
+
+        <div>
+            <div class="col-md-3 mb-3">
+                <label for="lastName" class="validationServer01">Last Name</label>
+                <input type="text" class="form-control" name="lastName" placeholder="e.g: Sunandar" value="<%= employee.lastName %>" required>
             </div>
         </div>
-        <div class=" form-group row">
-            <label for="salary" class="col-sm-2 col-form-label">Salary</label>
-            <div class="col-sm-10">
-                <input type="number" class="form-control" name="salary" value="<%= employee.salary %>" required>
+
+        <div>
+            <div class="col-md-3 mb-3">
+                <label for="salary" class="validationServer01">Salary</label>
+                <input type="number" class="form-control" name="salary" placeholder="e.g: 10000000" value="<%= employee.salary %>" required>
             </div>
         </div>
-        <div class=" row">
-            <legend class="col-form-label col-sm-2 pt-0">Position</legend>
-            <div class="col-sm-10">
-                <div class="form-check">
-                    <select name="position" class="custom-select custom-select-md mb-3">
-                        <option <%= employee.position === "boss" ? "selected" : "" %>>Big Boss</option>
-                        <option <%= employee.position === "administrator" ? "selected" : "" %>>Administrator</option>
-                        <option <%= employee.position === "staff" ? "selected" : "" %>>Staff</option>
-                        <option <%= employee.position === "officeBoy" ? "selected" : "" %>>Office Boy</option>
+
+        <div>
+            <div class="col-md-3 mb-3">
+                    <legend class="col-form-label col-sm-2 pt-0">Warehouse</legend>
+                    <select name="WarehouseId" class="custom-select custom-select-md mb-3">
+                        <option selected disabled>---SELECT---</option>
+                        <div class="col-md-3 mb-3">
+                            <% for (let i = 0; i < result.length; i++) {%>
+                              <option value="<%=result[i].dataValues.id%>"<%= employee.Warehouse.id === result[i].dataValues.id ? 'selected' : '' %>><%=result[i].getWarehouseName()%></option>
+                            <%}%>
+                        </div>
                     </select>
-                </div>
             </div>
         </div>
-        <div class="row">
+
+        <div>
+            <div class="col-md-3 mb-3">
+                    <legend class="col-form-label col-sm-2 pt-0">Position</legend>
+                    <select name="position" class="custom-select custom-select-md mb-3">
+                        <option selected disabled>---SELECT---</option>
+                        <option <%= employee.position === "boss" ? "selected" : "" %> value="boss">Big Boss</option>
+                        <option <%= employee.position === "administrator" ? "selected" : "" %> value="administrator">Administrator</option>
+                        <option <%= employee.position === "staff" ? "selected" : "" %> value="staff">Staff</option>
+                        <option <%= employee.position === "officeBoy" ? "selected" : "" %>value="officeBoy">Office Boy</option>
+                    </select>
+            </div>
+        </div>
+        
+        <div class="col-md-3 mb-3">
             <legend class="col-form-label col-sm-2 pt-0">Gender</legend>
             <div class="col-sm-10">
                 <div class="form-check form-check-inline">
