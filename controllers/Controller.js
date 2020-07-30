@@ -1,5 +1,5 @@
 const { Employee, EmployeeCredential } = require("../models")
-const bcrypt = require("bcryptjs")
+const { compare } = require("../helpers/bcrypt")
 
 class Controller {
     static home(req, res) {
@@ -20,7 +20,7 @@ class Controller {
                     res.redirect("/")
                 }
                 else {
-                    if (bcrypt.compareSync(req.body.password, data.password)) {
+                    if (compare(req.body.password, data.password)) {
                         req.session.username = data.username
                         res.redirect("/employees")
                     } else {

@@ -3,7 +3,7 @@ const {
   Model
 } = require('sequelize');
 
-const bcrypt = require("bcryptjs")
+const { hash } = require("../helpers/bcrypt")
 
 module.exports = (sequelize, DataTypes) => {
   class EmployeeCredential extends Model {
@@ -26,8 +26,8 @@ module.exports = (sequelize, DataTypes) => {
     modelName: 'EmployeeCredential',
     hooks: {
       beforeCreate(instance, options) {
-        let hash = bcrypt.hashSync(instance.password, bcrypt.genSaltSync(10));
-        instance.password = hash
+        let hashedPass = hash(instance.password);
+        instance.password = hashedPass
       }
     }
   });
