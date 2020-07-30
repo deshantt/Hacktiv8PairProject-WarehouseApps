@@ -41,11 +41,13 @@
                         <td><%= employee.position %></td>
                         <td><%= employee.gender %></td>
                         <td><%= employee.salary %></td>
-                        <td><%= employee.WarehouseId %></td>
+                        <td><%= employee.WarehouseId %> Warehouse JKT<br>
+                          <a type="button" class="btn btn-info" href='/warehouses/employee-registered'' role="button">Check All Registered Employees</a>
+                        </td>
                         <td>
                             <a type="button" class="btn btn-warning" href='/employees/<%= employee.id %>/edit' role="button">Edit</a>
                             <a type="button" class="btn btn-danger" href='/employees/<%= employee.id %>/delete' role="button" onclick="return confirm('Are you sure you want to delete the item?')">Delete</a>
-                            <a type="button" class="btn btn-info" href='#'' role="button">Manage</a>
+                            <a type="button" class="btn btn-primary" href='/employees/<%= employee.id %>/data' role="button">Manage</a>
 						</td>
                     </tr>
                     <% }) %>

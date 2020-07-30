@@ -5,6 +5,7 @@ const EmployeeController = require("../controllers/EmployeeController")
 
 // Read
 router.get("/", EmployeeController.show)
+router.get("/:id/data", EmployeeController.showEmployeeData)
 
 // Create
 router.get("/add", EmployeeController.addGet)

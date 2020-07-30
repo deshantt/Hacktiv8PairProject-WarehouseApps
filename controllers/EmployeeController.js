@@ -1,4 +1,4 @@
-const { Employee } = require("../models")
+const { Employee, Warehouse } = require("../models")
 
 class EmployeeController {
 
@@ -7,6 +7,16 @@ class EmployeeController {
         Employee.findAll()
             .then(employees => res.render("employees", { employees, nav: 'employee' }))
             .catch(err => res.send(err))
+    }
+
+    static showEmployeeData(req, res){
+        Employee.findAll({include:[{model: Warehouse}]}).then(data =>{
+            console.log(data)
+        }).then(err =>{
+            console.log(err)
+        })
+
+        res.render('employeeData')
     }
 
     static addGet(req, res) {

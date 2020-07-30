@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <%- include("./partials/bootstrap") %>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Data</title>
+</head>
+<body>
+    <br><br>
+    <div class="col-md-3 mb-3">
+        <a type="button" class="btn btn-info" href='#' role="button">Back</a><br>
+    </div>
+
+    <div class="col-md-3 mb-3">
+        <h1>WAREHOUSE :</h1>
+        <h1><%= warehouse %></h1>
+        <h4><%= address %></h4>
+    </div>
+
+    <div class="card">
+        <div class="card-body">
+          <table class="table table-hover">
+            <thead class="table table-bordered">
+              <tr class="table-primary">
+                <th scope="col">Position</th>
+                <th scope="col">Salary</th>
+                <th scope="col">Name</th>
+                <th scope="col">Gender</th>
+              </tr>
+            </thead>
+            <tbody class="table table-bordered">
+                <% if(result.length !== 0){for (let i = 0; i < result.length; i++) { %>
+                    <tr>
+                        <td><%= result[i].position %></td>
+                        <td><%= result[i].salary %></td>
+                        <td><%= result[i].getFullname() %></td>
+                        <td><%= result[i].gender %></td>
+                    </tr>
+                <% }} else{%>
+                    <td colspan="4"><h1 class="text-center">Tidak ada Pegawai terdaftar di gudang ini</h1></td>
+                <% } %>
+            </tbody>
+          </table>
+
+          <a type="button" class="btn btn-danger" href='#' role="button">Calculate All Salaries</a>
+
+        </div>
+    </div>
+</body>
+</html>

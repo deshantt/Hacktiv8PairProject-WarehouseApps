@@ -14,6 +14,15 @@ module.exports = (sequelize, DataTypes) => {
       Employee.belongsTo(models.Warehouse, { foreignKey: "WarehouseId" })
       Employee.hasOne(models.EmployeeCredential, { foreignKey: "EmployeeId" })
     }
+
+    // INSTANCE FULL NAME OF EMPLOYEE
+    getFullname(){
+      if (this.gender.toLowerCase() === 'female'){
+        return `Mrs. ${this.firstName} ${this.lastName}`
+      } else if (this.gender.toLowerCase() === 'male'){
+        return `Mr. ${this.firstName} ${this.lastName}`
+      }
+    }
   };
   Employee.init({
     firstName: DataTypes.STRING,

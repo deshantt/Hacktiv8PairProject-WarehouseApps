@@ -5,6 +5,7 @@ const WarehouseController = require("../controllers/WarehouseController")
 
 // Read
 router.get("/", WarehouseController.show)
+router.get("/:id/employee-registered", WarehouseController.showEmployeeRegistered)
 
 // Create
 router.get("/add", WarehouseController.addGet)

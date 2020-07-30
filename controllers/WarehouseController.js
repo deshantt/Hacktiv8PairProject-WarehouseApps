@@ -1,5 +1,4 @@
-const { Product, Warehouse } = require("../models")
-const warehouse = require("../models/warehouse")
+const { Employee, Product, Warehouse } = require("../models")
 
 class WarehouseController {
 
@@ -11,6 +10,30 @@ class WarehouseController {
                 res.render("warehouses", { warehouses , nav: 'warehouse' })
             })
             .catch(err => res.send(err))
+    }
+
+    static showEmployeeRegistered(req, res){
+        let keyParams = +req.params.id
+        Employee.findAll({include:[{model: Warehouse}]}).then(data =>{
+            let result = []
+            for (let i = 0; i < data.length; i++) {
+                if(data[i].dataValues.WarehouseId === keyParams){
+                    result.push(data[i])
+                }
+            }
+
+            if(result.length !== 0){
+                res.render('employeeWarehouse', {address: result[0].Warehouse.dataValues.address, warehouse: `${result[0].Warehouse.dataValues.city}-${result[0].Warehouse.dataValues.id}`, result })
+            } else {
+                Warehouse.findOne( {where: {id: keyParams} }).then(data =>{
+                    res.render('employeeWarehouse', {address: data.dataValues.address, warehouse: `${data.dataValues.city}-${data.dataValues.id}`, result: [] })
+                }).catch(err => {
+                       res.send(err)
+                })
+            }
+        }).then(err =>{
+            console.log(err)
+        })
     }
 
     static addGet(req, res) {
