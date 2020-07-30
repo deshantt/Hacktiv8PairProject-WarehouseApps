@@ -19,12 +19,17 @@ class EmployeeController {
     }
 
     static addGet(req, res) {
-        if (req.query.error) {
-            res.render("addEmployee", { err: req.query.error, nav: 'employee' })
-        }
-        else {
-            res.render("addEmployee", { err: null, nav: 'employee' })
-        }
+        Warehouse.findAll().then(data =>{
+            console.log(data)
+            if (req.query.error) {
+                res.render("addEmployee", { err: req.query.error, nav: 'employee', result:data })
+            }
+            else {
+                res.render("addEmployee", { err: null, nav: 'employee', result:data })
+            }    
+        }).then(err =>{
+            console.log(err)
+        })
     }
 
     static addPost(req, res) {
