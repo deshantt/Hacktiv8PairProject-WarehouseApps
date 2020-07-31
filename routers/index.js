@@ -7,7 +7,16 @@ const warehouseRouter = require("./warehouse")
 
 const Controller = require("../controllers/Controller")
 
-router.get("/login", Controller.login)
+const auth = require("../middlewares/auth")
+
+router.get("/", Controller.home)
+
+router.post("/login", Controller.login)
+
+router.get("/register", Controller.registerGet)
+router.post("/register", Controller.registerPost)
+
+router.use(auth)
 
 router.use("/employees", employeeRouter)
 router.use("/products", productRouter)
