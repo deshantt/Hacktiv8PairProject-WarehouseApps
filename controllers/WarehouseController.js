@@ -58,6 +58,7 @@ class WarehouseController {
         let id = +req.params.id
         Warehouse.findByPk(id)
             .then((warehouse) => {
+                console.log(warehouse)
                 if (!req.query.error) {
                     res.render("editWarehouse", { warehouse, err: null , nav: 'warehouse'})
                 }

@@ -2,6 +2,7 @@
 const {
   Model
 } = require('sequelize');
+const firstToCaps = require('../helpers/changetoCapitalize')
 module.exports = (sequelize, DataTypes) => {
   class Warehouse extends Model {
     /**
@@ -16,6 +17,14 @@ module.exports = (sequelize, DataTypes) => {
 
     getWarehouseName(){
       return `${this.city} - ${this.address}`
+    }
+
+    getWarehouseName(){
+      return firstToCaps(this.city)
+    }
+
+    getAddress(){
+      return firstToCaps(this.address)
     }
   };
   Warehouse.init({

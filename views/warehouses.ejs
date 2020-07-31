@@ -32,8 +32,8 @@
             <tbody class="table table-bordered">
                 <% if (warehouses.length !==0){ warehouses.forEach(warehouse => { %>
                     <tr>
-                        <td><%= warehouse.city %></td>
-                        <td><%= warehouse.address %></td>
+                        <td><%= warehouse.getWarehouseName() %></td>
+                        <td><%= warehouse.getAddress() %></td>
                         <td><%= warehouse.leaseExpiryDate %></td>
                         <td>
                             <a type="button" class="btn btn-warning" href='/warehouses/<%= warehouse.id %>/edit' role="button">Edit</a>
