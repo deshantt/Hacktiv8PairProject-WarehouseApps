@@ -11,12 +11,12 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       EmployeeCredential.belongsTo(models.Employee, { foreignKey: "EmployeeId" })
-      // SANT : SEPERTINYA KRG 1 KOLOM LG MAS DI DBASE, YG NYIMPEN DATA EMPLOYEE ID NYA, SI FK NYA
     }
   };
   EmployeeCredential.init({
     username: DataTypes.STRING,
-    password: DataTypes.STRING
+    password: DataTypes.STRING,
+    EmployeeId: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'EmployeeCredential',

@@ -57,28 +57,17 @@ class EmployeeController {
                 }
             })
         }).then(data =>{
-            // if (!req.query.error) {
+            if (!req.query.error) {
                 res.render("editEmployee", { employee : data.employee.dataValues, err: null, nav: 'employee', result: data.data})
-            // }
-            // else {
-                // res.render("editEmployee", { employee = data.employee, err: req.query.error, nav: 'employee', result = data.Warehouse })
-            // }
+            }
+            else {
+                res.render("editEmployee", { employee : data.employee.dataValues, err: req.query.error, nav: 'employee', result: data.data })
+            }
             
             console.log(data.data)
         }).catch(err =>{
             console.log(err)
         })
-
-        // Employee.findOne({include: [{model: Warehouse}], where: {id} })
-        //     .then((employee) => {
-        //         if (!req.query.error) {
-        //             res.render("editEmployee", { employee, err: null, nav: 'employee' })
-        //         }
-        //         else {
-        //             res.render("editEmployee", { employee, err: req.query.error, nav: 'employee' })
-        //         }
-        //     })
-        //     .catch(err => res.send(err))
     }
 
     static editPost(req, res) {
