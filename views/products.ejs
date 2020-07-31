@@ -41,7 +41,7 @@
                         <td>
                             <a type="button" class="btn btn-warning" href='/products/<%= product.id %>/edit' role="button">Edit</a>
                             <a type="button" class="btn btn-danger" href='/products/<%= product.id %>/delete' role="button" onclick="return confirm('Are you sure you want to delete the item?')">Delete</a>
-                            <a type="button" class="btn btn-info" href='#'' role="button">Warehouse Stocks</a>
+                            <a type="button" class="btn btn-info" href='/products/<%= product.id %>/stock' role="button">Warehouse Stocks</a>
 						</td>
                     </tr>
                     <% }) %>

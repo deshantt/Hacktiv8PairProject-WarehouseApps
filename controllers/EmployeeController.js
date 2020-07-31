@@ -4,7 +4,7 @@ class EmployeeController {
 
     // Read
     static show(req, res) {
-        Employee.findAll()
+        Employee.findAll({include:[{model: Warehouse}]})
             .then(employees => res.render("employees", { employees, nav: 'employee' }))
             .catch(err => res.send(err))
     }
@@ -12,20 +12,23 @@ class EmployeeController {
     static showEmployeeData(req, res){
         Employee.findAll({include:[{model: Warehouse}]}).then(data =>{
             console.log(data)
+            res.render('employeeData')
         }).then(err =>{
             console.log(err)
         })
-
-        res.render('employeeData')
     }
 
     static addGet(req, res) {
-        if (req.query.error) {
-            res.render("addEmployee", { err: req.query.error, nav: 'employee' })
-        }
-        else {
-            res.render("addEmployee", { err: null, nav: 'employee' })
-        }
+        Warehouse.findAll().then(data =>{
+            if (req.query.error) {
+                res.render("addEmployee", { err: req.query.error, nav: 'employee', result:data })
+            }
+            else {
+                res.render("addEmployee", { err: null, nav: 'employee', result:data })
+            }    
+        }).catch(err =>{
+            console.log(err)
+        })
     }
 
     static addPost(req, res) {
@@ -39,16 +42,32 @@ class EmployeeController {
 
     static editGet(req, res) {
         let id = +req.params.id
-        Employee.findByPk(id)
-            .then((employee) => {
-                if (!req.query.error) {
-                    res.render("editEmployee", { employee, err: null, nav: 'employee' })
-                }
-                else {
-                    res.render("editEmployee", { employee, err: req.query.error, nav: 'employee' })
+
+        Warehouse.findAll().then(data =>{
+            return new Promise((resolve, reject) => {
+                if(data){
+                    Employee.findOne({include: [{model: Warehouse}], where: {id} })
+                    .then((employee) => {
+                        resolve({data, employee})
+                })
+                .catch(err => res.send(err))
+
+                } else{
+                    reject('Data tidak ditemukan')
                 }
             })
-            .catch(err => res.send(err))
+        }).then(data =>{
+            if (!req.query.error) {
+                res.render("editEmployee", { employee : data.employee.dataValues, err: null, nav: 'employee', result: data.data})
+            }
+            else {
+                res.render("editEmployee", { employee : data.employee.dataValues, err: req.query.error, nav: 'employee', result: data.data })
+            }
+            
+            console.log(data.data)
+        }).catch(err =>{
+            console.log(err)
+        })
     }
 
     static editPost(req, res) {

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%- include("./partials/bootstrap") %>
+    <title>Add Stock</title>
+</head>
+
+<body>
+    <%- include("./partials/navbar") %>
+    <br><h2>Add Stock</h2><br>
+
+    <form action="/products/<%=data.data.id%>/addstock" method="post">
+        <div>
+            <div class="col-md-3 mb-3">
+                <label for="product" class="validationServer01">Product Name</label>
+                <input type="text" class="form-control" name="product" value="<%=data.data.name%>" disabled>
+            </div>
+        </div>
+
+        <div>
+            <div class="col-md-3 mb-3">
+                <label for="stock" class="validationServer01">Stock</label>
+                <input type="number" class="form-control" name="stock" placeholder="e.g: 20000" required>
+            </div>
+        </div>
+       
+        <div>
+            <div class="col-md-3 mb-3">
+                    <legend class="col-form-label col-sm-2 pt-0">Warehouse</legend>
+                    <select name="warehouse" class="custom-select custom-select-md mb-3">
+                        <option selected disabled>---SELECT---</option>
+                        <div class="col-md-3 mb-3">
+                            <% for (let i = 0; i < data.warehouse.length; i++) {%>
+                              <option value="<%=data.warehouse[i].id%>"><%=data.warehouse[i].getWarehouseName()%></option>
+                            <%}%>
+                        </div>
+                    </select>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-sm-10">
+                <button type="submit" class="btn btn-primary">Save</button>
+                <a class="btn btn-danger" href="/products/" role="button">Cancel</a>
+            </div>
+        </div>
+    </form>
+
+    <%- include("./partials/validation") %>
+    <%- include("./partials/footer") %>
+</body>
+
+</html>

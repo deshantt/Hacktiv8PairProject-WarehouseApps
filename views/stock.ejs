@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <%- include("./partials/bootstrap") %>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Employee Data</title>
+    <title>Stock Data</title>
 </head>
 <body>
     <br><br>
@@ -13,9 +13,9 @@
     </div>
 
     <div class="col-md-3 mb-3">
-        <h1>WAREHOUSE :</h1>
-        <h1><%= warehouse %></h1>
-        <h4><%= address %></h4>
+        <h1>Product</h1>
+        <h1><%= title[0] %></h1>
+        <h4>Category <%= title[1] %></h4>
     </div>
 
     <div class="card">
@@ -23,27 +23,23 @@
           <table class="table table-hover">
             <thead class="table table-bordered">
               <tr class="table-primary">
-                <th scope="col">Position</th>
-                <th scope="col">Salary</th>
-                <th scope="col">Name</th>
-                <th scope="col">Gender</th>
+                <th scope="col">Warehouse</th>
+                <th scope="col">Stock</th>
               </tr>
             </thead>
             <tbody class="table table-bordered">
                 <% if(result.length !== 0){for (let i = 0; i < result.length; i++) { %>
                     <tr>
-                        <td><%= result[i].getPosition() %></td>
-                        <td><%= result[i].getSalaryFormat() %></td>
-                        <td><%= result[i].getFullname() %></td>
-                        <td><%= result[i].getGender() %></td>
+                        <td><%= result[i].Warehouse.getWarehouseName() %></td>
+                        <td><%= result[i].Stock %></td>
                     </tr>
                 <% }} else{%>
-                    <td colspan="4"><h1 class="text-center">Tidak ada Pegawai terdaftar di gudang ini</h1></td>
+                        <td colspan="4"><h1 class="text-center">Tidak ada Warehouse terdaftar untuk produk ini</h1></td>
                 <% } %>
             </tbody>
           </table>
 
-          <a type="button" class="btn btn-danger" href='#' role="button">Calculate All Salaries</a>
+          <a type="button" class="btn btn-danger" href='/products/<%=title[2]%>/addstock' role="button">Tambah Stock Warehouse</a>
 
         </div>
     </div>
