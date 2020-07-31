@@ -4,20 +4,23 @@
         "lastName": "Jojon",
         "position": "boss",
         "gender": "male",
-        "salary": 10000000
+        "salary": 10000000,
+        "WarehouseId": 3
     },
     {
         "firstName": "Dina",
         "lastName": "Dimana",
         "position": "staff",
         "gender": "female",
-        "salary": 5000000
+        "salary": 5000000,
+        "WarehouseId": 1
     },
     {
         "firstName": "Edi",
         "lastName": "Marsudi",
         "position": "administrator",
         "gender": "male",
-        "salary": 7000000
+        "salary": 7000000,
+        "WarehouseId": 1
     }
 ]
